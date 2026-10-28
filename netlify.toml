@@ -1,0 +1,3 @@
+# Netlify publica la carpeta "public". Cada negocio vive en public/<negocio>/
+[build]
+  publish = "public"

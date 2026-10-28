@@ -1,0 +1,3 @@
+artifact/
+*.zip
+__pycache__/
