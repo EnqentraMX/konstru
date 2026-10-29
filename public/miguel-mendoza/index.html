@@ -3,9 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Miguel Mendoza Construcciones</title>
+<title>Construcciones y Remodelaciones Miguel Mendoza</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Construcciones y Remodelaciones Miguel Mendoza: ampliaciones, remodelaciones, tablaroca, plomería, electricidad e impermeabilización en todo Oaxaca.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Construcciones y Remodelaciones Miguel Mendoza">
+<meta property="og:description" content="Construcciones y Remodelaciones Miguel Mendoza: ampliaciones, remodelaciones, tablaroca, plomería, electricidad e impermeabilización en todo Oaxaca.">
+<meta property="og:url" content="https://konstru.netlify.app/miguel-mendoza/">
+<meta property="og:image" content="https://konstru.netlify.app/miguel-mendoza/img/cocina.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600;700&family=Big+Shoulders+Display:wght@800;900&display=swap">
@@ -177,7 +182,7 @@ textarea.campo{min-height:96px;resize:vertical}
 .tel{font-weight:700;color:var(--tinta);user-select:all;font-variant-numeric:tabular-nums}
 
 /* Trabajos */
-.galeria{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:170px;gap:10px}
+.galeria{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:170px;gap:10px;grid-auto-flow:dense}
 @media (min-width:760px){.galeria{grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:260px;gap:14px}}
 .obra{position:relative;margin:0;border-radius:var(--r);overflow:hidden;cursor:zoom-in;background:var(--cal-2);border:0;padding:0;text-align:left;color:var(--foto-txt)}
 .obra.ancha{grid-column:span 2}
@@ -263,6 +268,21 @@ textarea.campo{min-height:96px;resize:vertical}
 @keyframes pulso{0%{box-shadow:0 0 0 0 rgba(31,168,85,.55)}80%,100%{box-shadow:0 0 0 18px rgba(31,168,85,0)}}
 @media (max-width:520px){.fab span{display:none}.fab{width:58px;padding:0;justify-content:center}}
 
+/* Marca con más de 2 letras */
+.mono[data-largo]{font-size:.98rem;letter-spacing:-.01em}
+.vista-cab .mono[data-largo]{font-size:.85rem}
+.vista-cab .mono{color:var(--sobre-casco)}
+
+/* Respaldo */
+.respaldo{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.acred{display:grid;align-content:start;gap:6px;padding:18px;background:var(--card);border:1.5px solid var(--linea);border-radius:var(--r)}
+.acred .etiqueta{color:var(--casco);font-size:.75rem}
+.acred b{font-size:1.08rem;line-height:1.25}
+.acred span:last-child{color:var(--tinta-2);font-size:.93rem;line-height:1.45}
+.clientes-tit{margin:34px 0 14px;font-weight:700}
+.clientes{display:flex;flex-wrap:wrap;gap:8px 10px;list-style:none;margin:0;padding:0}
+.clientes li{padding:10px 16px;border-radius:4px;background:var(--card);border:1.5px solid var(--linea);font-family:var(--f-etiqueta);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:.95rem}
+
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   html{scroll-behavior:auto}
@@ -287,10 +307,10 @@ textarea.campo{min-height:96px;resize:vertical}
 
 <main id="inicio">
   <section class="hero">
-    <div class="hero-foto"><img id="heroImg" src="img/cocina.jpg" alt="Cocina integral terminada con plafón de tablaroca y lámparas colgantes"></div>
+    <div class="hero-foto"><img id="heroImg" alt=""></div>
     <div class="w">
       <p class="hero-gancho" id="gancho"></p>
-      <h1><span class="verbo-caja"><span class="verbo" id="verbo">Construimos</span></span>tu obra con gente de confianza</h1>
+      <h1><span class="verbo-caja"><span class="verbo" id="verbo">Construimos</span></span><span id="titular">tu obra con gente de confianza</span></h1>
       <p class="hero-sub" id="subtitulo"></p>
       <div class="hero-acciones">
         <a class="btn btn-wa" id="heroWa" href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Cotizar por WhatsApp</a>
@@ -309,7 +329,7 @@ textarea.campo{min-height:96px;resize:vertical}
       <div class="sec-cab">
         <span class="etiqueta">Servicios</span>
         <h2>¿Qué necesitas?</h2>
-        <p>Toca lo que necesitas y se agrega a tu cotización. Obra residencial, comercial, industrial y civil.</p>
+        <p id="servTexto">Toca lo que necesitas y se agrega a tu cotización. Obra residencial, comercial, industrial y civil.</p>
       </div>
       <div class="servicios" id="servicioGrid"></div>
       <div class="serv-nota"><span id="servCuenta"><b>1 servicio</b> en tu cotización</span><a class="btn btn-casco" href="#cotiza">Terminar cotización</a></div>
@@ -321,22 +341,22 @@ textarea.campo{min-height:96px;resize:vertical}
       <div class="sec-cab">
         <span class="etiqueta">Cotización en 1 minuto</span>
         <h2>Arma tu mensaje</h2>
-        <p>Elige las opciones y te abrimos WhatsApp con todo escrito. Así Miguel te responde con un presupuesto, no con más preguntas.</p>
+        <p id="cotTexto"></p>
       </div>
       <div class="cot-grid">
         <form class="pasos-form" id="cotForm" autocomplete="off">
           <fieldset class="paso"><legend><span class="n">1</span>Tipo de obra</legend><div class="chips" id="tipoChips"></div></fieldset>
           <fieldset class="paso"><legend><span class="n">2</span>Lo que necesitas <small>(puedes elegir varios)</small></legend><div class="chips" id="servChips"></div></fieldset>
           <fieldset class="paso"><legend><span class="n">3</span>Dónde es la obra</legend>
-            <input class="campo" id="donde" placeholder="Colonia y municipio, ej. Col. Reforma, Oaxaca" value="Santa Lucía del Camino">
+            <input class="campo" id="donde">
           </fieldset>
           <fieldset class="paso"><legend><span class="n">4</span>Para cuándo</legend><div class="chips" id="cuandoChips"></div></fieldset>
           <fieldset class="paso"><legend>Detalles <small>(opcional)</small></legend>
-            <textarea class="campo" id="detalles" placeholder="Ej. cocina de 3 x 4 m, quiero cambiar muebles y poner plafón">Cocina de 3 x 4 m, quiero cambiar muebles y poner plafón.</textarea>
+            <textarea class="campo" id="detalles"></textarea>
           </fieldset>
         </form>
         <aside class="vista" aria-label="Vista previa del mensaje">
-          <div class="vista-cab"><span class="mono">MM</span><div><b id="vistaNombre">Miguel Mendoza</b><span>Responde en menos de 1 hora</span></div></div>
+          <div class="vista-cab"><span class="mono">MM</span><div><b id="vistaNombre">Miguel Mendoza</b><span id="vistaSub">Responde en menos de 1 hora</span></div></div>
           <div class="chat"><div class="burbuja" id="burbuja"></div></div>
           <a class="btn btn-wa" id="enviarWa" href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Enviar por WhatsApp</a>
           <p class="vista-nota">En el chat puedes mandar fotos del lugar.<br>¿Prefieres llamar? <span class="tel" id="telVista"></span></p>
@@ -353,7 +373,7 @@ textarea.campo{min-height:96px;resize:vertical}
         <p>Fotos reales de obra. Toca cualquiera para verla en grande.</p>
       </div>
       <div class="galeria" id="galeria"></div>
-      <div class="leyenda"><span><i style="background:#2A2825"></i>Obra negra: estructura</span><span><i style="background:#8C8880"></i>Obra gris: instalaciones y aplanados</span><span><i style="background:#F1F0EB"></i>Obra blanca: acabados</span></div>
+      <div class="leyenda" id="leyenda"><span><i style="background:#2A2825"></i>Obra negra: estructura</span><span><i style="background:#8C8880"></i>Obra gris: instalaciones y aplanados</span><span><i style="background:#F1F0EB"></i>Obra blanca: acabados</span></div>
     </div>
   </section>
 
@@ -371,8 +391,8 @@ textarea.campo{min-height:96px;resize:vertical}
   <section class="sec" id="proceso">
     <div class="w">
       <div class="sec-cab">
-        <span class="etiqueta">Cómo trabajamos</span>
-        <h2>De tu mensaje a la entrega</h2>
+        <span class="etiqueta" id="procesoEtiqueta">Cómo trabajamos</span>
+        <h2 id="procesoTitulo">De tu mensaje a la entrega</h2>
       </div>
       <ol class="proceso" id="pasos"></ol>
     </div>
@@ -388,6 +408,18 @@ textarea.campo{min-height:96px;resize:vertical}
     </div>
   </section>
 
+  <section class="sec" id="respaldo" hidden>
+    <div class="w">
+      <div class="sec-cab">
+        <span class="etiqueta">Respaldo</span>
+        <h2 id="respaldoTitulo">Experiencia que nos respalda</h2>
+      </div>
+      <div class="respaldo" id="acreditaciones"></div>
+      <p class="clientes-tit" id="clientesTit">Empresas que han confiado en nosotros</p>
+      <ul class="clientes" id="clientes"></ul>
+    </div>
+  </section>
+
   <section class="sec" id="preguntas">
     <div class="w">
       <div class="sec-cab">
@@ -400,7 +432,7 @@ textarea.campo{min-height:96px;resize:vertical}
 
   <section class="cierre">
     <div class="w">
-      <h2>¿Empezamos tu <em>obra</em>?</h2>
+      <h2>¿Empezamos tu <em id="palabraObra">obra</em>?</h2>
       <p id="lema" style="max-width:52ch;opacity:.85"></p>
       <div class="cierre-acc">
         <a class="btn btn-wa" id="cierreWa" href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Escríbenos por WhatsApp</a>
@@ -414,7 +446,7 @@ textarea.campo{min-height:96px;resize:vertical}
 <footer class="pie">
   <div class="w">
     <span>© <span id="anio"></span> <b id="pieNombre"></b></span>
-    <span>Página hecha con <b>Konstru</b> · Ejemplo con datos ilustrativos</span>
+    <span>Página hecha con <b>Konstru</b><span id="pieEjemplo" hidden> · Ejemplo con datos ilustrativos</span></span>
   </div>
 </footer>
 
@@ -435,6 +467,16 @@ textarea.campo{min-height:96px;resize:vertical}
 (function(){
   var D = window.DATOS;
   var $ = function(id){ return document.getElementById(id); };
+  function val(k, d){ return (D[k] === undefined || D[k] === null) ? d : D[k]; }
+
+  // Colores de la marca del cliente (opcional)
+  if(D.tema){
+    var bloque = function(o){ return Object.keys(o).map(function(k){ return "--" + k + ":" + o[k]; }).join(";"); };
+    var css = "";
+    if(D.tema.claro) css += ":root{" + bloque(D.tema.claro) + "}";
+    if(D.tema.oscuro) css += "@media (prefers-color-scheme: dark){:root:not([data-theme=\"light\"]){" + bloque(D.tema.oscuro) + "}}:root[data-theme=\"dark\"]{" + bloque(D.tema.oscuro) + "}";
+    var st = document.createElement("style"); st.textContent = css; document.head.appendChild(st);
+  }
   function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
   var waBase = "https://wa.me/" + D.whatsapp;
   function waLink(texto){ return waBase + "?text=" + encodeURIComponent(texto); }
@@ -449,26 +491,43 @@ textarea.campo{min-height:96px;resize:vertical}
     arco:'<path d="M4 21V11a8 8 0 0 1 16 0v10"/><path d="M8.5 21v-9a3.5 3.5 0 0 1 7 0v9"/><path d="M2 21h20"/>',
     rayo:'<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
     techo:'<path d="M2 11l10-7 10 7"/><path d="M5 13l7-4.8 7 4.8"/><path d="M6 14v6h12v-6"/>',
+    viga:'<path d="M3 4h18M3 20h18M12 4v16"/><path d="M5 4l7 8-7 8M19 4l-7 8 7 8"/>',
+    fuego:'<path d="M12 3c.8 3.2 5 5.2 5 10.2a5 5 0 0 1-10 0c0-2.2 1-3.7 2.2-4.7 0 2 1 3.2 2.1 3.2 0-3-1.2-5.3.7-8.7z"/>',
+    llama:'<path d="M7 21h10"/><path d="M12 17.5a4 4 0 0 0 4-4c0-3.2-4-5.2-4-10.5-1 3.3-4 5.3-4 10.5a4 4 0 0 0 4 4z"/>',
+    torre:'<path d="M8 21l4-18 4 18"/><path d="M5 7h14M6.6 12h10.8M9 17h6"/>',
+    camino:'<path d="M9 3L4 21M15 3l5 18"/><path d="M12 4v3M12 10v3M12 16v4"/>',
+    aire:'<path d="M3 8h11a3 3 0 1 0-3-3"/><path d="M3 12h15a3 3 0 1 1-3 3"/><path d="M3 16h7"/>',
     ladrillo:'<rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 9.7h18M3 14.3h18M9 5v4.7M15 5v4.7M6 9.7v4.6M12 9.7v4.6M18 9.7v4.6M9 14.3V19M15 14.3V19"/>'
   };
   function icono(n){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(ICONOS[n]||ICONOS.casa)+'</svg>'; }
 
   // Estado de la cotización (abre con un ejemplo lleno)
-  var estado = { tipo: D.tiposObra[0].id, servicios: [D.servicios[1].id], cuando: D.cuando[1] };
+  var estado = { tipo: D.tiposObra[0].id, servicios: val("ejemploServicios", [D.servicios[1].id]).slice(), cuando: val("ejemploCuando", D.cuando[1]) };
 
   // Encabezado y portada
-  $("mono").textContent = D.iniciales;
-  document.querySelectorAll(".vista .mono").forEach(function(m){ m.textContent = D.iniciales; });
+  document.querySelectorAll(".mono").forEach(function(m){ m.textContent = D.iniciales; if(D.iniciales.length > 2) m.dataset.largo = "1"; });
   $("marca").textContent = D.marca; $("marcaSub").textContent = D.marcaSub;
   $("vistaNombre").textContent = D.marca;
   var g = D.gancho;
-  $("gancho").innerHTML = esc(g) + " <strong>¡No busques más!</strong>";
+  $("gancho").innerHTML = esc(g) + " <strong>" + esc(val("ganchoRemate", "¡No busques más!")) + "</strong>";
+  $("titular").textContent = val("titular", "tu obra con gente de confianza");
+  $("heroImg").src = val("heroImg", "img/cocina.jpg");
+  $("heroImg").alt = val("heroAlt", "Cocina integral terminada con plafón de tablaroca y lámparas colgantes");
+  $("servTexto").textContent = val("textoServicios", "Toca lo que necesitas y se agrega a tu cotización. Obra residencial, comercial, industrial y civil.");
+  $("cotTexto").textContent = val("textoCotizador", "Elige las opciones y te abrimos WhatsApp con todo escrito. Así " + D.marca.split(" ")[0] + " te responde con un presupuesto, no con más preguntas.");
+  $("vistaSub").textContent = val("respuesta", "Responde en menos de 1 hora");
+  $("donde").placeholder = val("lugarPlaceholder", "Colonia y municipio, ej. Col. Reforma, Oaxaca");
+  $("donde").value = val("ejemploLugar", "");
+  $("detalles").placeholder = val("detallesPlaceholder", "Ej. cocina de 3 x 4 m, quiero cambiar muebles y poner plafón");
+  $("detalles").value = val("ejemploDetalles", "");
+  $("palabraObra").textContent = val("palabraObra", "obra");
+  $("pieEjemplo").hidden = !D.ejemplo;
   $("subtitulo").textContent = D.subtitulo;
   $("sellos").innerHTML = D.sellos.map(function(s){ return "<li>"+esc(s)+"</li>"; }).join("");
-  $("lema").textContent = D.lema + ". Cuéntanos qué necesitas y te respondemos hoy mismo.";
+  $("lema").textContent = val("lemaCierre", D.lema + ". Cuéntanos qué necesitas y te respondemos hoy mismo.");
   $("pieNombre").textContent = D.negocio; $("anio").textContent = new Date().getFullYear();
 
-  var saludo = "Hola " + D.marca.split(" ")[0] + ", vi su página y quiero cotizar una obra.";
+  var saludo = val("saludo", "Hola " + D.marca.split(" ")[0] + ", vi su página y quiero cotizar una obra.");
   ["heroWa","cierreWa","fab"].forEach(function(id){ $(id).href = waLink(saludo); });
   $("telVista").textContent = D.telefono;
   $("compartir").href = "https://wa.me/?text=" + encodeURIComponent("Te recomiendo a " + D.negocio + ": " + D.web);
@@ -492,7 +551,8 @@ textarea.campo{min-height:96px;resize:vertical}
   $("cinta").innerHTML = grupo + grupo;
 
   // Números
-  $("numeros").innerHTML = D.numeros.map(function(n){
+  if(!(D.numeros || []).length) document.querySelector(".numeros").hidden = true;
+  $("numeros").innerHTML = (D.numeros || []).map(function(n){
     return '<div class="num"><b data-v="'+n.valor+'" data-a="'+esc(n.antes)+'" data-d="'+esc(n.despues)+'">'+esc(n.antes)+n.valor+esc(n.despues)+'</b><span>'+esc(n.texto)+'</span></div>';
   }).join("");
   if(!reduce && "IntersectionObserver" in window){
@@ -564,8 +624,9 @@ textarea.campo{min-height:96px;resize:vertical}
 
   // Galería
   $("galeria").innerHTML = D.trabajos.map(function(t,i){
-    var cls = t.etapa.toLowerCase().indexOf("negra")>-1 ? "negra" : t.etapa.toLowerCase().indexOf("gris")>-1 ? "gris" : "blanca";
-    return '<button type="button" class="obra '+(t.forma||"")+'" data-i="'+i+'"><img src="'+esc(t.img)+'" alt="'+esc(t.titulo)+'" loading="lazy"><span class="obra-info"><span class="etapa '+cls+'">'+esc(t.etapa)+'</span><b>'+esc(t.titulo)+'</b><small>'+esc(t.lugar)+'</small></span></button>';
+    var e = (t.etapa || "").toLowerCase();
+    var cls = t.tono || (e.indexOf("negra")>-1 ? "negra" : e.indexOf("gris")>-1 ? "gris" : "blanca");
+    return '<button type="button" class="obra '+(t.forma||"")+'" data-i="'+i+'"><img src="'+esc(t.img)+'" alt="'+esc(t.titulo)+'" loading="lazy"><span class="obra-info"><span class="etapa '+cls+'">'+esc(t.etapa)+'</span><b>'+esc(t.titulo)+'</b>'+(t.lugar ? '<small>'+esc(t.lugar)+'</small>' : '')+'</span></button>';
   }).join("");
   var visor = $("visor"), ultimo = null;
   $("galeria").addEventListener("click", function(e){
@@ -573,7 +634,7 @@ textarea.campo{min-height:96px;resize:vertical}
     var t = D.trabajos[+b.dataset.i]; ultimo = b;
     $("visorImg").src = t.img; $("visorImg").alt = t.titulo;
     $("visorTit").textContent = t.titulo;
-    $("visorDet").textContent = t.lugar + " · " + t.etapa + " · " + t.hecho;
+    $("visorDet").textContent = [t.lugar, t.etapa, t.hecho].filter(Boolean).join(" · ");
     visor.hidden = false; $("visorCerrar").focus();
   });
   function cerrar(){ visor.hidden = true; if(ultimo) ultimo.focus(); }
@@ -581,28 +642,56 @@ textarea.campo{min-height:96px;resize:vertical}
   visor.addEventListener("click", function(e){ if(e.target === visor) cerrar(); });
   document.addEventListener("keydown", function(e){ if(e.key === "Escape" && !visor.hidden) cerrar(); });
 
+  $("leyenda").hidden = !val("leyendaEtapas", true);
+
   // Cobertura
   $("zonas").innerHTML = (D.zonas || []).map(function(z){ return "<li>"+esc(z)+"</li>"; }).join("");
   $("zonaNota").textContent = D.zonaNota || "";
 
   // Proceso, opiniones, preguntas
+  $("procesoEtiqueta").textContent = val("procesoEtiqueta", "Cómo trabajamos");
+  $("procesoTitulo").textContent = val("procesoTitulo", "De tu mensaje a la entrega");
   $("pasos").innerHTML = D.pasos.map(function(p){ return "<li><b>"+esc(p.titulo)+"</b><p>"+esc(p.texto)+"</p></li>"; }).join("");
   var estrella = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg>';
-  $("opinionesLista").innerHTML = D.opiniones.map(function(o){
+  if(!(D.opiniones || []).length) $("opiniones").hidden = true;
+  $("opinionesLista").innerHTML = (D.opiniones || []).map(function(o){
     return '<article class="op"><div><div class="estrellas" aria-label="5 de 5 estrellas">'+estrella.repeat(5)+'</div><blockquote>'+esc(o.texto)+'</blockquote></div><footer><b>'+esc(o.nombre)+'</b><span>'+esc(o.trabajo)+' · '+esc(o.lugar)+'</span></footer></article>';
   }).join("");
   $("faq").innerHTML = D.preguntas.map(function(q,i){ return "<details"+(i===0?" open":"")+"><summary>"+esc(q.p)+"</summary><p>"+esc(q.r)+"</p></details>"; }).join("");
 
+  // Respaldo: acreditaciones y empresas cliente
+  var acr = D.acreditaciones || [], cli = D.clientes || [];
+  if(acr.length || cli.length){
+    $("respaldo").hidden = false;
+    $("respaldoTitulo").textContent = val("respaldoTitulo", "Experiencia que nos respalda");
+    $("acreditaciones").innerHTML = acr.map(function(a){ return '<div class="acred"><span class="etiqueta">'+esc(a.etiqueta||"")+'</span><b>'+esc(a.titulo)+'</b><span>'+esc(a.texto)+'</span></div>'; }).join("");
+    $("acreditaciones").hidden = !acr.length;
+    $("clientes").innerHTML = cli.map(function(n){ return "<li>"+esc(n)+"</li>"; }).join("");
+    $("clientes").hidden = $("clientesTit").hidden = !cli.length;
+  }
+
   // Contacto
-  var c = '<div><span class="etiqueta">Teléfono y WhatsApp</span><span class="tel">'+esc(D.telefono)+'</span></div>'
-        + '<div><span class="etiqueta">Horario</span><span>'+esc(D.horario)+'</span><span style="opacity:.75;font-size:.9rem">'+esc(D.urgencias)+'</span></div>'
-        + '<div><span class="etiqueta">Zona</span><span>'+(D.direccion ? esc(D.direccion) : "Todo el estado de Oaxaca, a domicilio")+'</span></div>';
+  var c = '<div><span class="etiqueta">'+esc(val("etiquetaTelefono","Teléfono y WhatsApp"))+'</span><span class="tel">'+esc(D.telefono)+'</span>'+(D.atiende ? '<span style="opacity:.75;font-size:.9rem">'+esc(D.atiende)+'</span>' : '')+'</div>';
+  if(D.correo) c += '<div><span class="etiqueta">Correo</span><a href="mailto:'+esc(D.correo)+'" style="user-select:all">'+esc(D.correo)+'</a></div>';
+  if(D.horario || D.urgencias) c += '<div><span class="etiqueta">Horario</span>'+(D.horario ? '<span>'+esc(D.horario)+'</span>' : '')+(D.urgencias ? '<span style="opacity:.75;font-size:.9rem">'+esc(D.urgencias)+'</span>' : '')+'</div>';
+  if(D.direccion) c += '<div><span class="etiqueta">Dirección</span><span>'+esc(D.direccion)+'</span><a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(D.direccion)+'" target="_blank" rel="noopener" style="font-size:.9rem">Ver en el mapa</a></div>';
+  else c += '<div><span class="etiqueta">Zona</span><span>'+esc(val("zonaContacto", "Todo el estado de Oaxaca, a domicilio"))+'</span></div>';
   var redes = [];
+  D.redes = D.redes || {};
   if(D.redes.facebook) redes.push('<a href="'+esc(D.redes.facebook)+'" target="_blank" rel="noopener">Facebook</a>');
   if(D.redes.instagram) redes.push('<a href="'+esc(D.redes.instagram)+'" target="_blank" rel="noopener">Instagram</a>');
   if(D.redes.tiktok) redes.push('<a href="'+esc(D.redes.tiktok)+'" target="_blank" rel="noopener">TikTok</a>');
   if(redes.length) c += '<div><span class="etiqueta">Síguenos</span><span>'+redes.join(" · ")+'</span></div>';
   $("datosContacto").innerHTML = c;
+
+  // "Llave en mano" antes de servicios (opcional)
+  if(D.procesoArriba) $("servicios").parentNode.insertBefore($("proceso"), $("servicios"));
+  // Alterna el fondo de las secciones visibles
+  var k = 0;
+  document.querySelectorAll("main > section.sec").forEach(function(sec){
+    if(sec.hidden) return;
+    sec.classList.toggle("cot", k % 2 === 1); k++;
+  });
 
   pintarServicios(); armarMensaje();
 })();

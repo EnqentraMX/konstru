@@ -91,5 +91,11 @@ window.DATOS = {
   ],
 
   // Dirección pública de la página (se usa para el botón Compartir)
-  web: "https://konstru.netlify.app/miguel-mendoza/"
+  web: "https://konstru.netlify.app/miguel-mendoza/",
+
+  // Página de ejemplo: muestra la nota "datos ilustrativos" y el cotizador prellenado
+  ejemplo: true,
+  ejemploLugar: "Santa Lucía del Camino",
+  ejemploDetalles: "Cocina de 3 x 4 m, quiero cambiar muebles y poner plafón.",
+  descripcion: "Construcciones y Remodelaciones Miguel Mendoza: ampliaciones, remodelaciones, tablaroca, plomería, electricidad e impermeabilización en todo Oaxaca."
 };
