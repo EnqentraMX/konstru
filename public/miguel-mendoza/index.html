@@ -136,7 +136,7 @@ p{margin:0}
 
 /* Servicios */
 .servicios{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-@media (min-width:1000px){.servicios{grid-template-columns:repeat(5,minmax(0,1fr))}}
+@media (min-width:1000px){.servicios{grid-template-columns:repeat(var(--cols,5),minmax(0,1fr))}}
 .serv{position:relative;display:grid;align-content:start;gap:10px;text-align:left;padding:18px 16px 16px;background:var(--card);border:1.5px solid var(--linea);border-radius:var(--r);cursor:pointer;transition:border-color .15s,transform .15s,background .15s}
 .serv:hover{border-color:var(--tinta);transform:translateY(-2px)}
 .serv svg{width:34px;height:34px;color:var(--tinta)}
@@ -272,6 +272,11 @@ textarea.campo{min-height:96px;resize:vertical}
 .mono[data-largo]{font-size:.98rem;letter-spacing:-.01em}
 .vista-cab .mono[data-largo]{font-size:.85rem}
 .vista-cab .mono{color:var(--sobre-casco)}
+.marca-txt b.larga{font-size:1.02rem;letter-spacing:.01em}
+.marca-txt b.larga + span{letter-spacing:.03em}
+@media (max-width:420px){.solo-ancho{display:none}}
+.mono.con-logo{background:#FFFFFF;padding:2px;clip-path:none;border-radius:8px;overflow:hidden}
+.mono.con-logo img{width:100%;height:100%;object-fit:contain;display:block}
 
 /* Respaldo */
 .respaldo{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
@@ -301,7 +306,7 @@ textarea.campo{min-height:96px;resize:vertical}
     <nav aria-label="Secciones">
       <a href="#servicios">Servicios</a><a href="#trabajos">Trabajos</a><a href="#cobertura">Cobertura</a><a href="#preguntas">Preguntas</a>
     </nav>
-    <a class="btn btn-casco" href="#cotiza">Cotizar gratis</a>
+    <a class="btn btn-casco" href="#cotiza">Cotizar<span class="solo-ancho"> gratis</span></a>
   </div>
 </header>
 
@@ -497,6 +502,12 @@ textarea.campo{min-height:96px;resize:vertical}
     torre:'<path d="M8 21l4-18 4 18"/><path d="M5 7h14M6.6 12h10.8M9 17h6"/>',
     camino:'<path d="M9 3L4 21M15 3l5 18"/><path d="M12 4v3M12 10v3M12 16v4"/>',
     aire:'<path d="M3 8h11a3 3 0 1 0-3-3"/><path d="M3 12h15a3 3 0 1 1-3 3"/><path d="M3 16h7"/>',
+    termo:'<rect x="4" y="4" width="16" height="5" rx="2.5"/><path d="M6 9L4 20M18 9l2 11M8.5 9l-1.3 8M12 9v8M15.5 9l1.3 8"/>',
+    sol:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+    panelsolar:'<path d="M4 4h16l-2 10H6z"/><path d="M5 9h14M9.3 4l-.8 10M14.7 4l.8 10M12 14v5M8 20h8"/>',
+    llave:'<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.8-.7-.7-2.8z"/>',
+    tinaco:'<path d="M6 7c0-1.7 2.7-3 6-3s6 1.3 6 3v8c0 1.7-2.7 3-6 3s-6-1.3-6-3z"/><path d="M6 7c0 1.7 2.7 3 6 3s6-1.3 6-3M7 18l-1 3M17 18l1 3"/>',
+    pergola:'<path d="M3 7h18M3 10h18M5 7v14M19 7v14M8 4v6M12 4v6M16 4v6"/>',
     ladrillo:'<rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 9.7h18M3 14.3h18M9 5v4.7M15 5v4.7M6 9.7v4.6M12 9.7v4.6M18 9.7v4.6M9 14.3V19M15 14.3V19"/>'
   };
   function icono(n){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(ICONOS[n]||ICONOS.casa)+'</svg>'; }
@@ -505,8 +516,14 @@ textarea.campo{min-height:96px;resize:vertical}
   var estado = { tipo: D.tiposObra[0].id, servicios: val("ejemploServicios", [D.servicios[1].id]).slice(), cuando: val("ejemploCuando", D.cuando[1]) };
 
   // Encabezado y portada
-  document.querySelectorAll(".mono").forEach(function(m){ m.textContent = D.iniciales; if(D.iniciales.length > 2) m.dataset.largo = "1"; });
+  document.querySelectorAll(".mono").forEach(function(m){
+    if(D.logo){ m.classList.add("con-logo"); m.innerHTML = '<img src="'+esc(D.logo)+'" alt="">'; return; }
+    m.textContent = D.iniciales; if(D.iniciales.length > 2) m.dataset.largo = "1";
+  });
+  if(D.columnasServicios) $("servicioGrid").style.setProperty("--cols", D.columnasServicios);
   $("marca").textContent = D.marca; $("marcaSub").textContent = D.marcaSub;
+  if(D.marca.length > 16) $("marca").classList.add("larga");
+  $("verbo").textContent = (D.verbos && D.verbos[0]) || "Construimos";
   $("vistaNombre").textContent = D.marca;
   var g = D.gancho;
   $("gancho").innerHTML = esc(g) + " <strong>" + esc(val("ganchoRemate", "¡No busques más!")) + "</strong>";
