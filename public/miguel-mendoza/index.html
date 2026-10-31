@@ -146,6 +146,16 @@ p{margin:0}
 .serv .marca-ok{font-family:var(--f-etiqueta);font-weight:700;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-2);margin-top:2px}
 .serv[aria-pressed="true"]{background:var(--casco);border-color:var(--casco);color:var(--sobre-casco)}
 .serv[aria-pressed="true"] svg,.serv[aria-pressed="true"] p,.serv[aria-pressed="true"] .marca-ok{color:var(--sobre-casco)}
+.serv .precio{font-family:var(--f-etiqueta);font-weight:700;font-size:1rem;letter-spacing:.02em;color:var(--cantera);font-variant-numeric:tabular-nums}
+.serv[aria-pressed="true"] .precio{color:var(--sobre-casco)}
+.lista-precios{display:grid;max-width:820px;border:1.5px solid var(--linea);border-radius:var(--r);background:var(--card);overflow:hidden}
+.fila-precio{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;align-items:baseline;padding:14px 18px;border-top:1px solid var(--linea)}
+.fila-precio:first-child{border-top:0}
+.fila-precio b{font-size:1rem}
+.fila-precio small{grid-column:1;color:var(--tinta-2);font-size:.88rem}
+.fila-precio .monto{grid-column:2;grid-row:1 / span 2;text-align:right;font-family:var(--f-display);font-weight:800;font-size:1.35rem;font-variant-numeric:tabular-nums;color:var(--tinta);white-space:nowrap}
+.fila-precio .monto span{display:block;font-family:var(--f-etiqueta);font-weight:600;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-2)}
+.precios-nota{margin-top:14px;color:var(--tinta-2);font-size:.92rem;max-width:70ch}
 .serv-nota{margin-top:18px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;color:var(--tinta-2)}
 .serv-nota b{color:var(--tinta)}
 
@@ -188,7 +198,7 @@ textarea.campo{min-height:96px;resize:vertical}
 .obra{position:relative;margin:0;border-radius:var(--r);overflow:hidden;cursor:zoom-in;background:var(--cal-2);border:0;padding:0;text-align:left;color:var(--foto-txt)}
 .obra.ancha{grid-column:span 2}
 .obra.alta{grid-row:span 2}
-@media (max-width:759px){.obra.alta-movil{grid-row:span 2}}
+@media (max-width:759px){.obra.alta-movil{grid-row:span 2}.obra.ancha-movil{grid-column:span 2}}
 .obra img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
 .obra:hover img{transform:scale(1.05)}
 .obra::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(16,15,13,.85),rgba(16,15,13,0) 55%)}
@@ -341,6 +351,17 @@ textarea.campo{min-height:96px;resize:vertical}
       </div>
       <div class="servicios" id="servicioGrid"></div>
       <div class="serv-nota"><span id="servCuenta"><b>1 servicio</b> en tu cotización</span><a class="btn btn-casco" href="#cotiza">Terminar cotización</a></div>
+    </div>
+  </section>
+
+  <section class="sec" id="precios" hidden>
+    <div class="w">
+      <div class="sec-cab">
+        <span class="etiqueta" id="preciosEtiqueta">Precios</span>
+        <h2 id="preciosTitulo">Lista de precios</h2>
+      </div>
+      <div class="lista-precios" id="listaPrecios"></div>
+      <p class="precios-nota" id="preciosNota"></p>
     </div>
   </section>
 
@@ -604,7 +625,7 @@ textarea.campo{min-height:96px;resize:vertical}
   function pintarServicios(){
     $("servicioGrid").innerHTML = D.servicios.map(function(s){
       var on = estado.servicios.indexOf(s.id) > -1;
-      return '<button type="button" class="serv" data-id="'+s.id+'" aria-pressed="'+on+'">'+icono(s.icono)+'<h3>'+esc(s.nombre)+'</h3><p>'+esc(s.desc)+'</p><span class="marca-ok">'+(on ? "✓ En tu cotización" : "+ Agregar")+'</span></button>';
+      return '<button type="button" class="serv" data-id="'+s.id+'" aria-pressed="'+on+'">'+icono(s.icono)+'<h3>'+esc(s.nombre)+'</h3><p>'+esc(s.desc)+'</p>'+(s.precio ? '<span class="precio">'+esc(s.precio)+'</span>' : '')+'<span class="marca-ok">'+(on ? "✓ En tu cotización" : "+ Agregar")+'</span></button>';
     }).join("");
     $("servChips").innerHTML = D.servicios.map(function(s){
       var on = estado.servicios.indexOf(s.id) > -1;
@@ -688,6 +709,17 @@ textarea.campo{min-height:96px;resize:vertical}
     return '<article class="op"><div><div class="estrellas" aria-label="5 de 5 estrellas">'+estrella.repeat(5)+'</div><blockquote>'+esc(o.texto)+'</blockquote></div><footer><b>'+esc(o.nombre)+'</b><span>'+esc(o.trabajo)+' · '+esc(o.lugar)+'</span></footer></article>';
   }).join("");
   $("faq").innerHTML = D.preguntas.map(function(q,i){ return "<details"+(i===0?" open":"")+"><summary>"+esc(q.p)+"</summary><p>"+esc(q.r)+"</p></details>"; }).join("");
+
+  // Lista de precios (opcional)
+  if(D.precios && (D.precios.items || []).length){
+    $("precios").hidden = false;
+    $("preciosEtiqueta").textContent = D.precios.etiqueta || "Precios";
+    $("preciosTitulo").textContent = D.precios.titulo || "Lista de precios";
+    $("listaPrecios").innerHTML = D.precios.items.map(function(it){
+      return '<div class="fila-precio"><b>'+esc(it.concepto)+'</b>'+(it.detalle ? '<small>'+esc(it.detalle)+'</small>' : '')+'<span class="monto">'+esc(it.precio)+(it.unidad ? '<span>'+esc(it.unidad)+'</span>' : '')+'</span></div>';
+    }).join("");
+    $("preciosNota").textContent = D.precios.nota || "";
+  }
 
   // Respaldo: acreditaciones y empresas cliente
   var acr = D.acreditaciones || [], cli = D.clientes || [];
