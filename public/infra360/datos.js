@@ -136,5 +136,5 @@ window.DATOS = {
     { p: "¿Trabajan con gobierno y empresas privadas?", r: "Sí, prestamos servicios de construcción y mantenimiento al sector público y privado." }
   ],
 
-  web: "https://konstru.netlify.app/infra360/"
+  web: "https://konstru.diegogopar1.workers.dev/infra360/"
 };

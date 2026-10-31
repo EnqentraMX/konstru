@@ -1,3 +1,10 @@
-# Netlify publica la carpeta "public". Cada negocio vive en public/<negocio>/
+# Konstru ya no se publica en Netlify: ahora vive en Cloudflare.
+# Esta regla manda los enlaces viejos (konstru.netlify.app/...) a la dirección nueva.
 [build]
   publish = "public"
+
+[[redirects]]
+  from = "https://konstru.netlify.app/*"
+  to = "https://konstru.diegogopar1.workers.dev/:splat"
+  status = 301
+  force = true
