@@ -36,6 +36,7 @@ window.DATOS = {
   titular: "herrería a tu medida",
   subtitulo: "Portones, puertas, ventanas, protecciones, barandales, estructuras y techados de policarbonato y lámina. Trabajo garantizado y precio justo en Ecatepec, todo el Estado de México y CDMX.",
   heroImg: "img/marco-puerta.jpg",
+  imagenCompartir: "img/compartir.jpg",   // vista previa al compartir el enlace (logo)
   heroAlt: "Marco de puerta de herrería recién soldado en el taller",
   lema: "Calidad, resistencia y trabajo a la medida",
   lemaCierre: "Calidad, resistencia y trabajo a la medida. Si ocupas algo, con gusto te cotizo sin compromiso.",
@@ -49,7 +50,7 @@ window.DATOS = {
   direccion: "Hacienda Santa Inés, Nextlalpan, Estado de México",
   mapa: "https://www.google.com/maps/search/?api=1&query=19.70916%2C-99.07332",
 
-  redes: { facebook: "", instagram: "", tiktok: "" },
+  redes: { facebook: "https://www.facebook.com/profile.php?id=61592780963202", instagram: "", tiktok: "" },
 
   sellos: ["Trabajo garantizado", "Precio justo", "Cotización sin compromiso"],
 

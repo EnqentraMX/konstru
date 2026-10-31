@@ -15,6 +15,7 @@ titulo = campo("titulo") or campo("negocio")
 desc = campo("descripcion") or campo("subtitulo")
 web = campo("web")
 hero = campo("heroImg") or "img/cocina.jpg"
+imagen = campo("imagenCompartir") or hero
 e = lambda s: html.escape(s, quote=True)
 
 plant = (raiz / "plantilla/pagina.html").read_text(encoding="utf-8")
@@ -25,7 +26,8 @@ meta += '<meta property="og:title" content="' + e(titulo) + '">\n'
 meta += '<meta property="og:description" content="' + e(desc) + '">\n'
 if web:
     meta += '<meta property="og:url" content="' + e(web) + '">\n'
-    meta += '<meta property="og:image" content="' + e(web.rstrip("/") + "/" + hero) + '">\n'
+    meta += '<meta property="og:image" content="' + e(web.rstrip("/") + "/" + imagen) + '">\n'
+    meta += '<meta name="twitter:card" content="summary_large_image">\n'
 plant = re.sub(r'<meta name="description" content="[^"]*">\n?', meta, plant, count=1)
 
 cabeza, cuerpo = plant.split("<!--CUERPO-->")
