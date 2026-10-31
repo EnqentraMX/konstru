@@ -5,6 +5,6 @@
 
 [[redirects]]
   from = "https://konstru.netlify.app/*"
-  to = "https://konstru.diegogopar1.workers.dev/:splat"
+  to = "https://konstru.demomx.workers.dev/:splat"
   status = 301
   force = true

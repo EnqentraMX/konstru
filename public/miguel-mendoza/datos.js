@@ -91,7 +91,7 @@ window.DATOS = {
   ],
 
   // Dirección pública de la página (se usa para el botón Compartir)
-  web: "https://konstru.diegogopar1.workers.dev/miguel-mendoza/",
+  web: "https://konstru.demomx.workers.dev/miguel-mendoza/",
 
   // Página de ejemplo: muestra la nota "datos ilustrativos" y el cotizador prellenado
   ejemplo: true,

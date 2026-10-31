@@ -116,5 +116,5 @@ window.DATOS = {
     { p: "¿Dónde están?", r: "En la colonia San Ramón, en Puebla. Damos servicio en Puebla y alrededores." }
   ],
 
-  web: "https://konstru.diegogopar1.workers.dev/arquitectura-sustentable/"
+  web: "https://konstru.demomx.workers.dev/arquitectura-sustentable/"
 };
